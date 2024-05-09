@@ -59,13 +59,17 @@ export const BillboardForm: React.FC<BillboardFormProps> = ( {initialData} ) => 
     const onSubmit = async (values: BillboardFormValues) => {
         try{
             setLoading(true);
-            await axios.patch(`/api/stores/${params.storeId}`, values);
+            if (initialData){
+                await axios.patch(`/api/${params.storeId}/billboards/${params.billboardId}`, values);
+            } else {
+                await axios.post(`/api/${params.storeId}/billboards`, values);
+            }
             //mutateでなくrefreshすることで再取得できる
             router.refresh()
+            router.push(`/${params.storeId}/billboards`);
             toast({
                 title: "Success",
-                description: "Store settings updated",
-            
+                description: toastMassage,
             })
 
         }catch(error){
@@ -82,19 +86,17 @@ export const BillboardForm: React.FC<BillboardFormProps> = ( {initialData} ) => 
     const onDelete = async () => {
         try{
             setLoading(true);
-            await axios.delete(`/api/stores/${params.storeId}`);
+            await axios.delete(`/api/${params.storeId}/billboards/${params.billboardId}`);
             router.refresh();
             router.push("/");
             toast({
                 title: "Success",
-                description: "Store deleted",
-            
+                description: "billboard deleted",
             })
         }catch(error){
             toast({
                 title: "Error",
                 description: "Failed to delete store",
-            
             })
         } finally{
             setLoading(false);
