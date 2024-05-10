@@ -18,7 +18,6 @@ import { useToast } from "@/components/ui/use-toast";
 import { AlertModal } from "@/components/modals/alert-modal";
 import { ApiAlert } from "@/components/ui/api-alert";
 import { useOrigin } from "@/hooks/use-origin";
-import { init } from "next/dist/compiled/webpack/webpack";
 import ImageUpload from "@/components/ui/image-upload";
 
 const formSchema = z.object({
@@ -88,7 +87,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ( {initialData} ) => 
             setLoading(true);
             await axios.delete(`/api/${params.storeId}/billboards/${params.billboardId}`);
             router.refresh();
-            router.push("/");
+            router.push(`/${params.storeId}/billboards`);
             toast({
                 title: "Success",
                 description: "billboard deleted",
@@ -154,13 +153,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ( {initialData} ) => 
                     </div>
                     <Button disabled={loading} type="submit" className="ml-auto">{action}</Button>
                 </form>
-            </Form>
-            <Separator />
-            <ApiAlert 
-                title="NEXT_PUBLIC_API_URL" 
-                description={`${origin}/api/${params.storeId}`} 
-                variant="public" 
-            />
+            </Form>        
         </>
     );
 }
