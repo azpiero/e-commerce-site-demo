@@ -1,6 +1,12 @@
 'use client';
 
-import { AlertDialog, AlertDialogContent, AlertDialogDescription, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
+import {
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
 
 interface ModalProps {
   title: string;
@@ -11,12 +17,11 @@ interface ModalProps {
 }
 
 export const Modal: React.FC<ModalProps> = ({ title, description, isOpen, onClose, children }) => {
-
   const onChange = (open: boolean) => {
-    if(!isOpen){
+    if (!isOpen) {
       onClose();
     }
-  }
+  };
 
   return (
     <AlertDialog open={isOpen} onOpenChange={onChange}>
@@ -25,10 +30,8 @@ export const Modal: React.FC<ModalProps> = ({ title, description, isOpen, onClos
           <AlertDialogTitle>{title}</AlertDialogTitle>
           <AlertDialogDescription>{description}</AlertDialogDescription>
         </AlertDialogHeader>
-        <div>
-          {children}
-        </div>
+        <div>{children}</div>
       </AlertDialogContent>
     </AlertDialog>
   );
-}
+};
