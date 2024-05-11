@@ -4,6 +4,7 @@ const isProtectedRoute = createRouteMatcher([
   '/',
 ]);
 
+// public api routeのところがcleakMIddlewareを使った書き方が不明
 export default clerkMiddleware((auth, req) => {
   if (isProtectedRoute(req)) auth().protect();
 });
