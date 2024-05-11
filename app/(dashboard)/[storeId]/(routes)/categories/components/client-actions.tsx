@@ -3,7 +3,7 @@
 
 import axios from "axios";
 import { useState } from "react";
-import { BillboardColumn } from "./columns";
+import { CategoryColumn } from "./columns";
 import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -13,7 +13,7 @@ import { useParams, useRouter } from "next/navigation";
 import { AlertModal } from "@/components/modals/alert-modal";
 
 interface CellActionProps {
-    data: BillboardColumn;
+    data: CategoryColumn;
 }
 
 export const ClientActions: React.FC<CellActionProps> = ({data}) => {
@@ -89,5 +89,4 @@ export const ClientActions: React.FC<CellActionProps> = ({data}) => {
     
     </>
     )
-
 }   
