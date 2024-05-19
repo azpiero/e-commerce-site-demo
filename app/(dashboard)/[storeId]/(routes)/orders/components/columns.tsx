@@ -1,7 +1,6 @@
 'use client';
 
 import { ColumnDef } from '@tanstack/react-table';
-import { ClientActions } from './client-actions';
 
 export type OrderColumn = {
   id: string;
